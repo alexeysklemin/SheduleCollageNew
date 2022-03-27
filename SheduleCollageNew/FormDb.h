@@ -8,6 +8,8 @@ namespace SheduleCollageNew {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Data::SQLite;
+	using namespace System::Data::SqlClient;
 
 	/// <summary>
 	/// Сводка для FormDb
@@ -99,5 +101,18 @@ namespace SheduleCollageNew {
 
 		}
 #pragma endregion
+	private: System::Void FormDb1(System::Object^ sender, System::EventArgs^ e) {
+		SQLiteConnection^ sqlite_con;
+		SQLiteCommand^ sqlite_cmd;
+		SQLiteDataReader^ sqlite_datareader;
+		sqlite_con = gcnew SQLiteConnection("Data Source =testdatabase.db; Version=3; New=True; Compress=True;");
+		sqlite_con->Open();
+
+
+		//sqlDt->Load(sqlRd);
+		//sqlRd->Close();
+		//sqlConn->Close();
+		//dataGridView1->DataSource = sqlDt;
+	}
 	};
 }
