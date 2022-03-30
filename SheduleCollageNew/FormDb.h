@@ -108,8 +108,8 @@ namespace SheduleCollageNew {
 		sqlite_con = gcnew SQLiteConnection("Data Source =testdatabase.db; Version=3; New=True; Compress=True;");
 		sqlite_con->Open();
 
-		sqlite_cmd->sqlite_cmd.CreateCommand();
-		sqlite_con->CommandText("CREATE TABLE test (id integer, test varchar(50))");
+		sqlite_cmd = gcnew SQLiteCommand("CREATE TABLE test (id integer, test varchar(50))");
+		
 		sqlite_cmd->ExecuteNonQuery();
 
 		//sqlDt->Load(sqlRd);
