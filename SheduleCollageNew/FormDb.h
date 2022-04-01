@@ -9,7 +9,8 @@ namespace SheduleCollageNew {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::Data::SQLite;
-	using namespace System::Data::SqlClient;
+	using namespace System::Data::SQLite::Linq;
+	
 
 	/// <summary>
 	/// Сводка для FormDb
@@ -107,15 +108,15 @@ namespace SheduleCollageNew {
 		SQLiteDataReader^ sqlite_datareader;
 		sqlite_con = gcnew SQLiteConnection("Data Source =testdatabase.db; Version=3; New=True; Compress=True;");
 		sqlite_con->Open();
-
-		sqlite_cmd = gcnew SQLiteCommand("CREATE TABLE test (id integer, test varchar(50))");
-		
+		sqlite_cmd = sqlite_con->CreateCommand();
+		sqlite_cmd->CommandText = ("CREATE TABLE test (id integer, test varchar(50))");
 		sqlite_cmd->ExecuteNonQuery();
 
 		//sqlDt->Load(sqlRd);
 		//sqlRd->Close();
 		//sqlConn->Close();
 		//dataGridView1->DataSource = sqlDt;
+		
 	}
 	};
 }
