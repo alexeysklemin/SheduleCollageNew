@@ -116,7 +116,7 @@ namespace SheduleCollageNew {
 		//sqlRd->Close();
 		//sqlConn->Close();
 		//dataGridView1->DataSource = sqlDt;
-		
+		//
 	}
 	};
 }
