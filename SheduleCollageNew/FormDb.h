@@ -122,7 +122,7 @@ namespace SheduleCollageNew {
 		sqlite_datareader->Close();
 		sqlite_con->Close();
 		dataGridView1->DataSource = sqlDt;
-		//
+		//Success
 	}
 	};
 }
