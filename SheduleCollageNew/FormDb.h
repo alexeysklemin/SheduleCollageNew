@@ -10,12 +10,14 @@ namespace SheduleCollageNew {
 	using namespace System::Drawing;
 	using namespace System::Data::SQLite;
 	using namespace System::Data::SQLite::Linq;
+	using namespace System::Data::SQLite::Generic;
 	
 
 	/// <summary>
 	/// Сводка для FormDb
 	/// </summary>
 	public ref class FormDb : public System::Windows::Forms::Form
+	
 	{
 	public:
 		FormDb(void)
@@ -106,16 +108,20 @@ namespace SheduleCollageNew {
 		SQLiteConnection^ sqlite_con;
 		SQLiteCommand^ sqlite_cmd;
 		SQLiteDataReader^ sqlite_datareader;
-		sqlite_con = gcnew SQLiteConnection("Data Source =testdatabase.db; Version=3; New=True; Compress=True;");
+		DataTable^ sqlDt = gcnew DataTable();
+		//SQLite^ sqlDtA = gcnew SQLiteAdapter();
+		//sqlite_datareader^ sqlRd;
+		sqlite_con = gcnew SQLiteConnection("Data Source = mydb.db; Version=3; New=False; Compress=True;");
 		sqlite_con->Open();
 		sqlite_cmd = sqlite_con->CreateCommand();
-		sqlite_cmd->CommandText = ("CREATE TABLE test (id integer, test varchar(50))");
+		sqlite_cmd->CommandText = ("SELECT * FROM firstTable");
 		sqlite_cmd->ExecuteNonQuery();
 
-		//sqlDt->Load(sqlRd);
-		//sqlRd->Close();
-		//sqlConn->Close();
-		//dataGridView1->DataSource = sqlDt;
+		sqlite_datareader = sqlite_cmd->ExecuteReader();
+		sqlDt->Load(sqlite_datareader);
+		sqlite_datareader->Close();
+		sqlite_con->Close();
+		dataGridView1->DataSource = sqlDt;
 		//
 	}
 	};
